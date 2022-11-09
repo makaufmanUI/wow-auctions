@@ -49,7 +49,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ylabel = "Price (silver)" if scale==100 else "Price (gold)"
             fig, ax = plt.subplots()
             ax.plot(times, prices)
-            fig.set_linewidth(1.5)
+            fig.set_linewidth(1.0)
             fig.set_edgecolor('#000000')
             ax.fill_between(times, prices, 0, alpha=0.2)
             ax.set_ylabel(ylabel, fontsize=14, fontweight='bold', labelpad=20)
