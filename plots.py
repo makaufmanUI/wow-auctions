@@ -49,7 +49,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ylabel = "Price (silver)" if scale==100 else "Price (gold)"
             fig, ax = plt.subplots()
             ax.plot(times, prices)
-            fig.set_linewidth(1.0)
+            fig.set_linewidth(1.5)
             fig.set_edgecolor('#000000')
             ax.fill_between(times, prices, 0, alpha=0.2)
             ax.set_ylabel(ylabel, fontsize=14, fontweight='bold', labelpad=20)
@@ -87,7 +87,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ax1.set_ylim( min(min(serverPrices),min(regionPrices))*0.6, max(max(serverPrices),max(regionPrices))*1.3 )
             ax2.set_ylim( min(min(serverPrices),min(regionPrices))*0.6, max(max(serverPrices),max(regionPrices))*1.3 )
             ax1.grid(axis='x', which='both', color='#000000', linewidth=1.5, alpha=0)
-            ax1.grid(axis='y', which='both', color='#CCCCCC', linewidth=0.5, linestyle='-')
+            ax1.grid(axis='y', which='both', color='#CCCCCC', linewidth=0.5, linestyle='-', alpha=0.5)
             ax2.grid(False)
             return fig
     else:
@@ -105,7 +105,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ax1.plot(times, prices, label='Price')
             ax2.plot(times, quantities, label='Quantity', color="#FF9B44")
             ax1.fill_between(times, prices, 0, alpha=0.2)
-            ax1.set_ylabel(ylabel, fontsize=16, fontweight='bold', labelpad=20)
+            ax1.set_ylabel(ylabel, fontsize=14, fontweight='bold', labelpad=20)
             ax1.tick_params(axis='y', which='major', labelsize=11)
             ax1.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
             ax2.tick_params(axis='y', which='both', left=False, right=False, labelleft=False, labelright=False)     # Hide the right y-axis.
@@ -116,7 +116,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ax1.set_ylim(min(prices)*0.6, max(prices)*1.3)
             ax2.set_ylim(min(quantities)*0.8, max(quantities)*5)
             ax1.grid(axis='x', which='both', color='#000000', linewidth=1.5, alpha=0)
-            ax1.grid(axis='y', which='both', color='#CCCCCC', linewidth=0.5, linestyle='-')
+            ax1.grid(axis='y', which='both', color='#CCCCCC', linewidth=0.5, linestyle='-', alpha=0.5)
             ax2.grid(False)
             return fig
 
@@ -143,7 +143,7 @@ def price(item: str, numDays: int = None, server: str = "Skyfury", faction: str 
     if replaceOutliers:
         prices = replace_outliers(prices, threshold)
     fig = generate_figure(times, prices)
-    fig.gca().set_title(f"{item}: last {numDays} days", fontsize=18, fontweight='bold', pad=25)
+    fig.gca().set_title(f"{item}: last {numDays} days", fontsize=16, fontweight='bold', pad=25)
 
     unit = " s" if ylabel == "Price (silver)" else " g"
     fig.gca().text(0.01, 0.96, f"Mean: {(mean/SCALE_FACTOR(prices)):.2f}{unit}", transform=fig.gca().transAxes, fontsize=12, verticalalignment='top')
