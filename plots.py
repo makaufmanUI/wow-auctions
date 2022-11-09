@@ -202,7 +202,7 @@ def price_and_region(item: str, numDays: int = None, server: str = "Skyfury", fa
     regionData = get_region_history(item, region, numDays)
     serverData, regionData = align(serverData, regionData)
     if replaceOutliers:
-        from wow.ah.misc import fix_bad_data
+        from ah.misc import fix_bad_data
         regionData["prices"] = fix_bad_data(serverData["prices"], regionData["prices"], threshold)
 
     serverPrices = serverData["prices"]
