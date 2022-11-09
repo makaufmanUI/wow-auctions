@@ -57,7 +57,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
             ax.set_xlim(MINUS_THREE_HOURS(times[0]), PLUS_ONE_HOUR(times[-1]))
             ax.set_ylim(min(prices)*0.6, max(prices)*1.3)
-            ax.grid(axis='x', which='both', color='#000000', linewidth=1.5, alpha=0)
+            ax.grid(axis='x', which='both', color='#CCCCCC', linewidth=0.5, linestyle='-', alpha=0.5)
             return fig
         else:                                   # If two lists are passed in, then it's the server prices and region prices.
             serverPrices = prices[0]
@@ -75,7 +75,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             ax1.plot(times, serverPrices, label='Server price')
             ax2.plot(times, regionPrices, label='Region price', color="#FF9B44")
             ax1.fill_between(times, serverPrices, 0, alpha=0.2)
-            ax1.set_ylabel(serverYlabel, fontsize=16, fontweight='bold', labelpad=20)
+            ax1.set_ylabel(serverYlabel, fontsize=14, fontweight='bold', labelpad=20)
             ax1.tick_params(axis='y', which='major', labelsize=11)
             ax1.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
             ax2.tick_params(axis='y', which='both', left=False, right=False, labelleft=False, labelright=False)     # Hide the right y-axis.
