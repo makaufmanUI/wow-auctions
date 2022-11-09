@@ -52,7 +52,7 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             fig.set_linewidth(1.5)
             fig.set_edgecolor('#000000')
             ax.fill_between(times, prices, 0, alpha=0.2)
-            ax.set_ylabel(ylabel, fontsize=16, fontweight='bold', fontstyle='italic', labelpad=20)
+            ax.set_ylabel(ylabel, fontsize=14, fontweight='bold', labelpad=20)
             ax.tick_params(axis='y', which='major', labelsize=11)
             ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
             ax.set_xlim(MINUS_THREE_HOURS(times[0]), PLUS_ONE_HOUR(times[-1]))
