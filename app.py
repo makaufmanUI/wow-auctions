@@ -4,6 +4,13 @@ if __name__ == "__main__":
     import streamlit as st
     from streamlit.components.v1 import html
     from plots import price, price_and_quantity, price_and_region
+    
+    st.set_page_config(
+        page_title="AH Prices",
+        layout="centered",
+        page_icon=":heavy_dollar_sign:"
+    )
+    
     with open("style/style.css") as f:      # load css file
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     
