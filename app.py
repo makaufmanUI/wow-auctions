@@ -9,7 +9,7 @@ if __name__ == "__main__":
         page_title="AH Prices",
         layout="centered",
         #page_icon=":heavy_dollar_sign:"
-        page_icon=":currency_exchange:"
+        page_icon=":moneybag:"
     )
     
     with open("style/style.css") as f:      # load css file
