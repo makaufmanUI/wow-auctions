@@ -8,7 +8,8 @@ if __name__ == "__main__":
     st.set_page_config(
         page_title="AH Prices",
         layout="centered",
-        page_icon=":heavy_dollar_sign:"
+        #page_icon=":heavy_dollar_sign:"
+        page_icon=":currency_exchange:"
     )
     
     with open("style/style.css") as f:      # load css file
