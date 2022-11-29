@@ -145,7 +145,7 @@ def price(item: str, numDays: int = None, server: str = "Skyfury", faction: str 
     if replaceOutliers:
         prices = replace_outliers(prices, threshold)
     fig = generate_figure(times, prices)
-    fig.gca().set_title(f"[{item}] - last {numDays} days", fontsize=16, fontweight='bold', pad=25)
+    fig.gca().set_title(f"[{item}] - last {numDays} days", fontsize=16, fontweight='bold', pad=25, color='#ebebd6')
 
     unit = " s" if ylabel == "Price (silver)" else " g"
     fig.gca().text(0.01, 0.96, f"Mean: {(mean/SCALE_FACTOR(prices)):.2f}{unit}", transform=fig.gca().transAxes, fontsize=12, verticalalignment='top')
