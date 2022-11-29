@@ -52,13 +52,15 @@ def generate_figure(times: list, prices: list, quantities: list = None) -> plt.F
             fig.set_linewidth(1.5)
             fig.set_edgecolor('#000000')
             ax.fill_between(times, prices, 0, alpha=0.2)
-            ax.set_ylabel(ylabel, fontsize=14, fontweight='bold', labelpad=20)
+            ax.set_ylabel(ylabel, fontsize=14, fontweight='bold', labelpad=20, color='#ebebd6')
             ax.tick_params(axis='y', which='major', labelsize=11)
             ax.tick_params(axis='x', which='both', bottom=False, top=False, labelbottom=False)
             ax.set_xlim(MINUS_THREE_HOURS(times[0]), PLUS_ONE_HOUR(times[-1]))
             ax.set_ylim(min(prices)*0.6, max(prices)*1.3)
             ax.grid(axis='x', which='both', color='#000000', linewidth=0.5, linestyle='-', alpha=0)
             ax.grid(axis='y', which='both', color='#CCCCCC', linewidth=0.5, linestyle='-', alpha=0.5)
+            ax.set_facecolor('#0e1117')
+            fig.set_facecolor('#0e1117')
             return fig
         else:                                   # If two lists are passed in, then it's the server prices and region prices.
             serverPrices = prices[0]
@@ -143,7 +145,7 @@ def price(item: str, numDays: int = None, server: str = "Skyfury", faction: str 
     if replaceOutliers:
         prices = replace_outliers(prices, threshold)
     fig = generate_figure(times, prices)
-    fig.gca().set_title(f"{item}: last {numDays} days", fontsize=16, fontweight='bold', pad=25)
+    fig.gca().set_title(f"[{item}] - last {numDays} days", fontsize=16, fontweight='bold', pad=25)
 
     unit = " s" if ylabel == "Price (silver)" else " g"
     fig.gca().text(0.01, 0.96, f"Mean: {(mean/SCALE_FACTOR(prices)):.2f}{unit}", transform=fig.gca().transAxes, fontsize=12, verticalalignment='top')
@@ -175,7 +177,7 @@ def price_and_quantity(item: str, numDays: int = None, server: str = "Skyfury", 
     if replaceOutliers:
         prices = replace_outliers(prices, threshold)
     fig = generate_figure(times, prices, quantities)
-    fig.gca().set_title(f"{item}: last {numDays} days", fontsize=16, fontweight='bold', pad=25)
+    fig.gca().set_title(f"[{item}] - last {numDays} days", fontsize=16, fontweight='bold', pad=25)
     
     return fig
 
@@ -210,6 +212,6 @@ def price_and_region(item: str, numDays: int = None, server: str = "Skyfury", fa
     regionPrices = regionData["prices"]
     numDays = numDays = ((serverData["times"][-1])-(serverData["times"][0])).days + 1 if numDays is None else numDays
     fig = generate_figure(serverData["times"], [serverPrices, regionPrices])
-    fig.gca().set_title(f"{item}: last {numDays} days", fontsize=16, fontweight='bold', pad=25)
+    fig.gca().set_title(f"[{item}] - last {numDays} days", fontsize=16, fontweight='bold', pad=25)
     
     return fig
